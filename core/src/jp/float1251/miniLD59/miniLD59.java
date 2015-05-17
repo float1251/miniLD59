@@ -21,6 +21,7 @@ public class miniLD59 extends ApplicationAdapter {
     private Stage stage;
 
     private Vector2 player = new Vector2(1, 1);
+    private Enemy[] enemies;
 
     @Override
     public void create() {
@@ -110,6 +111,22 @@ public class miniLD59 extends ApplicationAdapter {
         // playerの位置は 1, 1 startで固定
         player.set(1, 1);
         viewport.getCamera().position.set(player.x * Constants.SPRITE_SIZE, player.y * Constants.SPRITE_SIZE, 0);
+
+        // 敵作成
+        enemies = new Enemy[3];
+        for (int i = 0; i < 3; i++) {
+            boolean canCreate = false;
+            Vector2 pos = new Vector2();
+            while (!canCreate) {
+                int x = (int) (Math.random() * 100000) % 51;
+                int y = (int) (Math.random() * 100000) % 31;
+                pos.set(x, y);
+                if (!stage.checkCollision(pos)) {
+                    canCreate = true;
+                }
+            }
+            enemies[i] = new Enemy(pos, 0.5f, stage);
+        }
     }
 
 
@@ -121,15 +138,22 @@ public class miniLD59 extends ApplicationAdapter {
         // playerの中心位置にカメラを移動させる
         viewport.getCamera().position.set(player.x * Constants.SPRITE_SIZE, player.y * Constants.SPRITE_SIZE, 0);
 
+        // TODO 敵とplayerの衝突判定
+
         viewport.getCamera().update();
         batch.setProjectionMatrix(viewport.getCamera().combined);
         batch.begin();
 
         stage.render(batch, texRegions);
 
-        batch.draw(texRegions[0], player.x * Constants.SPRITE_SIZE, player.y * Constants.SPRITE_SIZE);
+        for (Enemy enemy : enemies) {
+            enemy.update(Gdx.graphics.getDeltaTime());
+            enemy.render(batch, texRegions);
+        }
 
         // player render
+        batch.draw(texRegions[0], player.x * Constants.SPRITE_SIZE, player.y * Constants.SPRITE_SIZE);
+
 
         batch.end();
 
