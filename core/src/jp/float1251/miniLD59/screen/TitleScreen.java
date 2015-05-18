@@ -42,7 +42,7 @@ public class TitleScreen implements Screen {
         font.draw(batch, "Tap To Start", -40, -10);
         batch.end();
 
-        if (Gdx.input.justTouched()) {
+        if (Gdx.input.justTouched() && game.getScreen().equals(this)) {
             game.setScreen(new GameScreen());
         }
     }

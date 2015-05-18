@@ -4,11 +4,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import jp.float1251.miniLD59.Constants;
@@ -25,12 +28,17 @@ public class GameScreen implements Screen {
 
     private Vector2 player = new Vector2(1, 1);
     private Enemy[] enemies;
+    private BitmapFont font;
+    private float total;
 
     @Override
     public void show() {
         batch = new SpriteBatch();
 
         viewport = new FitViewport(240, 160);
+
+        font = new BitmapFont();
+        font.setColor(Color.WHITE);
 
         init();
 
@@ -107,6 +115,7 @@ public class GameScreen implements Screen {
     }
 
     private void init() {
+        total = 0;
         img = SpriteDownloader.loadSprite();
         texRegions = createTexRegions(img);
         stage = new Stage(51, 31);
@@ -156,6 +165,10 @@ public class GameScreen implements Screen {
         // player render
         batch.draw(texRegions[0], player.x * Constants.SPRITE_SIZE, player.y * Constants.SPRITE_SIZE);
 
+        total += delta;
+
+        Vector3 pos = viewport.getCamera().unproject(new Vector3(40, 30, 0));
+        font.draw(batch, "time:" + total, pos.x, pos.y);
 
         batch.end();
 
