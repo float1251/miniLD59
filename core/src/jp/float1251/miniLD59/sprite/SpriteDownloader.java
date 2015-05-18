@@ -1,6 +1,5 @@
 package jp.float1251.miniLD59.sprite;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Gdx2DPixmap;
@@ -16,8 +15,6 @@ public class SpriteDownloader {
         try {
 			InputStream stream = new URL("http://swapshop.pixelsyntax.com/api/randomImage").openStream();
 			Gdx2DPixmap pixmap = Gdx2DPixmap.newPixmap(stream, Gdx2DPixmap.GDX2D_FORMAT_RGB888);
-			Gdx.app.log("url", pixmap.getFormatString());
-			Gdx.app.log("url", pixmap.getWidth()+"");
             img = new Texture(new Pixmap(pixmap));
 		} catch (IOException e) {
 			e.printStackTrace();

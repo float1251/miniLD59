@@ -4,14 +4,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
-/**
- * Created by takahiroiwatani on 2015/05/17.
- */
 public class Enemy {
-    private final Stage stage;
-    private float moveInterval;
     public Vector2 position;
 
+    private final Stage stage;
+    private float moveInterval;
     private float time;
     private int index;
 

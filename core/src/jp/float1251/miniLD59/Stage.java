@@ -4,14 +4,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
-/**
- * Created by takahiroiwatani on 2015/05/17.
- */
 public class Stage {
 
     private int maxLines = 11;
     private int maxRows = 11;
-
 
     public static class Type {
         public static final int NONE = 0;
