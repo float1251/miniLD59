@@ -3,7 +3,7 @@ package jp.float1251.miniLD59.client;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
-import jp.float1251.miniLD59.miniLD59;
+import jp.float1251.miniLD59.MiniLD59;
 
 public class HtmlLauncher extends GwtApplication {
 
@@ -14,6 +14,6 @@ public class HtmlLauncher extends GwtApplication {
 
         @Override
         public ApplicationListener getApplicationListener () {
-                return new miniLD59();
+                return new MiniLD59();
         }
 }

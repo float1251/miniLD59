@@ -4,7 +4,7 @@ import com.badlogic.gdx.Game;
 
 import jp.float1251.miniLD59.screen.TitleScreen;
 
-public class miniLD59 extends Game {
+public class MiniLD59 extends Game {
 
     @Override
     public void create() {
