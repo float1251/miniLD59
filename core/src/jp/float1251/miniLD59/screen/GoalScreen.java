@@ -12,11 +12,9 @@ import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.utils.Align;
@@ -58,7 +56,6 @@ public class GoalScreen implements Screen {
         textButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Gdx.app.log("test", event.toString());
                 actor.addAction(Actions.sequence(Actions.scaleTo(1.1f, 1.1f, 0.1f), Actions.scaleTo(1f, 1f, 0.1f)));
             }
         });
@@ -71,7 +68,6 @@ public class GoalScreen implements Screen {
         textButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Gdx.app.log("test", event.toString());
                 actor.addAction(Actions.sequence(Actions.scaleTo(1.1f, 1.1f, 0.1f), Actions.scaleTo(1f, 1f, 0.1f), new Action() {
                     @Override
                     public boolean act(float delta) {
