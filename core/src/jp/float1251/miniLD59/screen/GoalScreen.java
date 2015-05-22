@@ -20,6 +20,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
+import jp.float1251.miniLD59.Constants;
+
 
 public class GoalScreen implements Screen {
 
@@ -34,11 +36,11 @@ public class GoalScreen implements Screen {
 
     @Override
     public void show() {
-        stage = new Stage(new FitViewport(210, 160));
-        stage.setDebugAll(true);
+        stage = new Stage(new FitViewport(Constants.WIDTH, Constants.HEIGHT));
+        // stage.setDebugAll(true);
 
         Table table = new Table();
-        table.setPosition(100, 100);
+        table.setPosition(Constants.WIDTH / 2, Constants.HEIGHT / 2);
 
         Label label = new Label("GOAL!!!", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         label.setFontScale(1.5f);
@@ -56,7 +58,13 @@ public class GoalScreen implements Screen {
         textButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                actor.addAction(Actions.sequence(Actions.scaleTo(1.1f, 1.1f, 0.1f), Actions.scaleTo(1f, 1f, 0.1f)));
+                actor.addAction(Actions.sequence(Actions.scaleTo(1.1f, 1.1f, 0.1f), Actions.scaleTo(1f, 1f, 0.1f), new Action() {
+                    @Override
+                    public boolean act(float delta) {
+                        game.setScreen(new GameScreen(game));
+                        return false;
+                    }
+                }));
             }
         });
 

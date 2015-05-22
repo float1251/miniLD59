@@ -1,5 +1,6 @@
 package jp.float1251.miniLD59.screen;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
@@ -20,6 +21,7 @@ import jp.float1251.miniLD59.Stage;
 import jp.float1251.miniLD59.sprite.SpriteDownloader;
 
 public class GameScreen implements Screen {
+    private final Game game;
     SpriteBatch batch;
     private FitViewport viewport;
     private TextureRegion[] texRegions = new TextureRegion[64];
@@ -31,11 +33,15 @@ public class GameScreen implements Screen {
     private BitmapFont font;
     private float total;
 
+    public GameScreen(Game game) {
+        this.game = game;
+    }
+
     @Override
     public void show() {
         batch = new SpriteBatch();
 
-        viewport = new FitViewport(240, 160);
+        viewport = new FitViewport(Constants.WIDTH, Constants.HEIGHT);
 
         font = new BitmapFont();
         font.setColor(Color.WHITE);
@@ -108,7 +114,8 @@ public class GameScreen implements Screen {
 
                 if (stage.checkGoal(player)) {
                     // TODO goal演出
-                    init();
+                    game.setScreen(new GoalScreen(game, total));
+                    dispose();
                 }
             }
         });

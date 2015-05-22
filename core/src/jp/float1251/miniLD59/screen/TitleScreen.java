@@ -10,6 +10,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
+import jp.float1251.miniLD59.Constants;
+
 public class TitleScreen implements Screen {
 
     private final Game game;
@@ -25,7 +27,7 @@ public class TitleScreen implements Screen {
     @Override
     public void show() {
         batch = new SpriteBatch();
-        viewport = new FitViewport(240, 160);
+        viewport = new FitViewport(Constants.WIDTH, Constants.HEIGHT);
         title = new Texture("title.png");
         font = new BitmapFont();
         font.setColor(Color.WHITE);
@@ -43,7 +45,8 @@ public class TitleScreen implements Screen {
         batch.end();
 
         if (Gdx.input.justTouched() && game.getScreen().equals(this)) {
-            game.setScreen(new GameScreen());
+            game.setScreen(new GameScreen(game));
+            dispose();
         }
     }
 
@@ -69,6 +72,8 @@ public class TitleScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        batch.dispose();
+        title.dispose();
+        font.dispose();
     }
 }
